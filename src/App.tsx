@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-import styled from 'styled-components';
+import { HashRouter, Route, Link } from 'react-router-dom';
+import { Home, About } from './pages';
 
 class App extends Component {
     render() {
-        return <Test>얍얍</Test>;
+        return (
+            <HashRouter>
+                <Link to="about">어바웃</Link>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/about" component={About} />
+            </HashRouter>
+        );
     }
 }
-
-const Test = styled.div`
-    color: red;
-`;
 
 export default hot(module)(App);
