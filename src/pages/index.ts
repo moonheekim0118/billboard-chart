@@ -1,2 +1,4 @@
-export { default as Home } from './Home';
-export { default as About } from './About';
+import { lazy } from 'react';
+
+export const Home = lazy(() => import('./Home'));
+export const About = lazy(() => import('./About'));

@@ -26,8 +26,9 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'public/'),
-        publicPath: '/public/',
-        filename: 'bundle.js',
+        publicPath: '/',
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].chunk.js',
     },
     devServer: {
         historyApiFallback: true,

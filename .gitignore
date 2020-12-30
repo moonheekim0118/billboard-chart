@@ -1,3 +1,4 @@
 node_modules
 .prettierignore
-bundle.js
+main.bundle.js
+*.chunk.js
