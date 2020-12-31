@@ -1,19 +1,7 @@
-import React, { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
 const Home = () => {
-    const dispatch = useDispatch();
-    const onClick = useCallback(() => {
-        dispatch({
-            type: 'COUNTER_REQUEST',
-        });
-    }, []);
-
-    return (
-        <div>
-            <button onClick={onClick}>누르면 증가합니다.</button>
-        </div>
-    );
+    return <div></div>;
 };
 
 export default Home;
