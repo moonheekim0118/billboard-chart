@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
+    const dispatch = useDispatch();
+    const onClick = useCallback(() => {
+        dispatch({
+            type: 'COUNTER_REQUEST',
+        });
+    }, []);
+
     return (
         <div>
-            <h2>홈</h2>
+            <button onClick={onClick}>함 눌러보이소</button>
         </div>
     );
 };
