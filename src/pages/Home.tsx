@@ -11,7 +11,7 @@ const Home = () => {
 
     return (
         <div>
-            <button onClick={onClick}>함 눌러보이소</button>
+            <button onClick={onClick}>누르면 증가합니다.</button>
         </div>
     );
 };

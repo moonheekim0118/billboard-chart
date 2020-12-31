@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Layout = () => {
-    const number = useSelector((state) => state.test.number);
+    const { number, counterLoading } = useSelector((state) => state.test);
 
-    return <div>{number}</div>;
+    return <div>{counterLoading ? '로딩중' : number}</div>;
 };
 
 export default Layout;

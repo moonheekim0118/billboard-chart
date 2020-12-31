@@ -1,8 +1,13 @@
-import { watch } from 'fs';
-import { all, fork, takeLatest, put, call } from 'redux-saga/effects';
+import { all, fork, takeLatest, put, call, delay } from 'redux-saga/effects';
+
+function* counterAPI() {
+    // API
+}
 
 function* counter() {
     try {
+        //yield call(counterAPI);
+        yield delay(1000);
         yield put({
             type: 'COUNTER_SUCCESS',
         });

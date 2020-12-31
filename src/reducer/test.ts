@@ -1,5 +1,3 @@
-import { produce } from 'immer';
-
 export const initialState = {
     counterLoading: false,
     counterDone: true,
@@ -8,25 +6,30 @@ export const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-    return produce(state, (draft) => {
-        switch (action.type) {
-            case 'COUNTER_REQUEST':
-                draft.counterLoading = true;
-                draft.counterDone = false;
-                draft.counterError = null;
-                break;
-            case 'COUNTER_SUCCESS':
-                draft.counterLoading = false;
-                draft.counterDone = true;
-                draft.counterError = null;
-                draft.number = draft.number + 1;
-                break;
-            case 'COUNTER_FAIL':
-                draft.counterLoading = false;
-                draft.counterDone = false;
-                draft.counterError = '에러에러';
-        }
-    });
+    switch (action.type) {
+        case 'COUNTER_REQUEST':
+            return {
+                ...state,
+                counterLoading: true,
+            };
+        case 'COUNTER_SUCCESS':
+            return {
+                ...state,
+                counterLoading: false,
+                counterDone: true,
+                number: state.number + 1,
+            };
+        case 'COUNTER_FAIL':
+            return {
+                ...state,
+                counterLoading: false,
+                counterDOne: false,
+                counterError: '에러에러',
+            };
+
+        default:
+            return state;
+    }
 };
 
 export default reducer;
