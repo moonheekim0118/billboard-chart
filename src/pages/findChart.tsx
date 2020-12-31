@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from '../components/Layout';
 
-const Home = () => {
+const findChart = () => {
     return (
-        <Layout title={'Today'}>
-            <div>Home</div>
+        <Layout title={'Someday'}>
+            <div>dd</div>
         </Layout>
     );
 };
 
-export default Home;
+export default findChart;
