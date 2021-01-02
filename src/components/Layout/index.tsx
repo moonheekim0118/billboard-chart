@@ -12,7 +12,7 @@ const Layout = (props: Props) => {
         <>
             <Navigation />
             <Container>
-                <Title>Billboard Hot 100 {props.title}</Title>
+                <Title>Music {props.title}</Title>
                 {props.children}
             </Container>
         </>
@@ -23,7 +23,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 80px;
 `;
 
 const Title = styled.span`

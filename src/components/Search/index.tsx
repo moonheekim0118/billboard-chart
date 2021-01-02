@@ -1,20 +1,48 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import Button from '../Button';
+import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
 
-const Chart = () => {
-    return <Container></Container>;
+// TODO : sessionStorage에서 keyword 가져와서 input initlaValue로 넣기
+const Search = () => {
+    const [value, onInput, validation] = useInput();
+
+    const onSubmit = useCallback(
+        (e) => {
+            e.preventDefault();
+        },
+        [value]
+    );
+
+    return (
+        <Form>
+            <Input value={value} onChange={onInput} />
+            <Button
+                title={'submit'}
+                onClick={onSubmit}
+                type={'submit'}
+                disabled={validation}
+            />
+        </Form>
+    );
 };
 
-const Container = styled.div`
-    width: 500px;
-    height: 100%;
-
+const Form = styled.form`
+    text-align: center;
+    padding: 20px 0px;
     display: flex;
-    flex-direction: column;
+`;
 
-    @media (max-width: 500px) {
-        width: 90%;
+const Input = styled.input`
+    width: 75%;
+    padding: 10px 15px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 15px;
+
+    &:focus {
+        outline: none;
     }
 `;
 
-export default Chart;
+export default Search;
