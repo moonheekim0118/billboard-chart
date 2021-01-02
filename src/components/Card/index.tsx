@@ -1,23 +1,17 @@
 import React from 'react';
-import musicInfo from '../../model/musicInfo';
 import styled from 'styled-components';
 
-interface Props {
-    music: musicInfo;
-}
-
-const Card = (props: Props) => {
-    console.log('잉?' + props);
+const Card = () => {
     return (
         <Container>
-            <MusicInfo>
+            {/* <MusicInfo>
                 <Rank>{props.music.rank}</Rank>
                 <Info>
                     <Title>{props.music.title}</Title>
                     <Artist>{props.music.artist}</Artist>
                 </Info>
             </MusicInfo>
-            <LastWeek>으잉</LastWeek>
+            <LastWeek>으잉</LastWeek> */}
         </Container>
     );
 };

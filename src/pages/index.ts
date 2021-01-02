@@ -1,4 +1,4 @@
 import { lazy } from 'react';
 
 export const Home = lazy(() => import('./Home'));
-export const findChart = lazy(() => import('./findChart'));
+export const About = lazy(() => import('./About'));

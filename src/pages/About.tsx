@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from '../components/Layout';
 
-const findChart = () => {
+const About = () => {
     return (
-        <Layout title={'Someday'}>
-            <div>dd</div>
+        <Layout title={'about'}>
+            <div>about page</div>
         </Layout>
     );
 };
 
-export default findChart;
+export default About;

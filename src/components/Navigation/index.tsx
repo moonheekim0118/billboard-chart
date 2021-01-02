@@ -7,7 +7,7 @@ const Navigation = () => {
         <Container>
             <MenuWrapper>
                 <MenuItem to="/">Home</MenuItem>
-                <MenuItem to="/findChart">find chart</MenuItem>
+                <MenuItem to="/about">about</MenuItem>
             </MenuWrapper>
         </Container>
     );
