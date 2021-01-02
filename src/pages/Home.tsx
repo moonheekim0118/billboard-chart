@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
 import Layout from '../components/Layout';
 import Search from '../components/Search';
+import { APIrequest } from '../api';
 import styled from 'styled-components';
 
 const Home = () => {
-    useEffect(() => {}, []);
+    useEffect(() => {
+        APIrequest('sia');
+    }, []);
 
     return (
         <Layout title={'search'}>

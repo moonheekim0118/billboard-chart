@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from 'react';
 import { hot } from 'react-hot-loader';
 import { HashRouter, Route } from 'react-router-dom';
-import { Home, About } from './pages';
+import { Home, About, Artist } from './pages';
 
 class App extends Component {
     render() {
@@ -10,6 +10,7 @@ class App extends Component {
                 <HashRouter>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/about" component={About} />
+                    <Route exact path="/artist/:id" component={Artist} />
                 </HashRouter>
             </Suspense>
         );
