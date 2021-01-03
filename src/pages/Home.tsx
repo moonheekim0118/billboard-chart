@@ -1,18 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useState } from 'react';
 import Layout from '../components/Layout';
 import Search from '../components/Search';
-import { APIrequest } from '../api';
+import Card from '../components/Card';
+import { api } from '../api';
+import { searchResult } from '../model/searchResult';
 import styled from 'styled-components';
 
 const Home = () => {
-    useEffect(() => {
-        APIrequest('sia');
+    // search Result 저장
+    const [searchData, setData] = useState<searchResult[]>([]);
+
+    // api request 함수
+    const fetchAPI = useCallback(async (value: string) => {
+        const result = await api.search(value);
+        console.log(result);
+        setData(result.data);
     }, []);
 
     return (
         <Layout title={'search'}>
             <Container>
-                <Search />
+                <Search fetchAPI={fetchAPI} />
+                {searchData.length > 0 &&
+                    searchData.map((data) => (
+                        <Card key={data.result.id} data={data} />
+                    ))}
             </Container>
         </Layout>
     );

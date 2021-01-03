@@ -4,12 +4,17 @@ import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
 
 // TODO : sessionStorage에서 keyword 가져와서 input initlaValue로 넣기
-const Search = () => {
+
+interface Props {
+    fetchAPI: (value: string) => void;
+}
+const Search = (props: Props) => {
     const [value, onInput, validation] = useInput();
 
     const onSubmit = useCallback(
-        (e) => {
+        async (e) => {
             e.preventDefault();
+            await props.fetchAPI(value);
         },
         [value]
     );

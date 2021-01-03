@@ -1,10 +1,13 @@
 interface primaryArtist {
     id: number;
+    name: string;
 }
 
 interface result {
+    api_path: string;
+    id: number;
     title: string;
-    header_image_thumbnail_url: string;
+    song_art_image_thumbnail_url: string;
     primary_artist: primaryArtist;
 }
 

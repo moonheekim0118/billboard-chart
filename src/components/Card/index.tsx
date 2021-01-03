@@ -1,27 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
+import { searchResult } from '../../model/searchResult';
 
-const Card = () => {
+interface Props {
+    data: searchResult;
+}
+
+const Card = (props: Props) => {
     return (
         <Container>
-            {/* <MusicInfo>
-                <Rank>{props.music.rank}</Rank>
+            <MusicInfo>
+                <Album src={props.data.result.song_art_image_thumbnail_url} />
                 <Info>
-                    <Title>{props.music.title}</Title>
-                    <Artist>{props.music.artist}</Artist>
+                    <Title>{props.data.result.title}</Title>
+                    <Artist>{props.data.result.primary_artist.name}</Artist>
                 </Info>
             </MusicInfo>
-            <LastWeek>으잉</LastWeek> */}
         </Container>
     );
 };
 
 const Container = styled.div`
     display: flex;
-    justify-content: space-between;
-    align-item: center;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 80px;
+    height: 150px;
     background-color: #fff;
 
     margin-top: 25px;
@@ -30,6 +34,11 @@ const Container = styled.div`
 
     cursor: pointer;
     transition: box-shadow 0.5s ease;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     &:hover {
         box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 1);
     }
@@ -37,32 +46,38 @@ const Container = styled.div`
 
 const MusicInfo = styled.div`
     display: flex;
+    width: 100%;
 `;
 
-const Rank = styled.span`
+const Album = styled.img`
     font-size: 1.2em;
     margin-right: 35px;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     border-right: 1px solid #eaeae1;
-    padding: 25px 20px;
 
     color: #34495e;
 `;
 
 const Info = styled.div`
     display: flex;
+    width: 60%;
     flex-direction: column;
-    padding: 15px 20px;
+    justify-content: center;
 `;
 
 const Title = styled.span`
-    font-size: 1.2em;
+    font-size: 1.3em;
 `;
 
 const Artist = styled.span`
     font-size: 1.1em;
+
+    transition: color 0.3s ease;
+    &:hover {
+        color: #eb4034;
+    }
 `;
 
-const LastWeek = styled.div`
-    padding: 25px 20px;
-`;
 export default Card;
