@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { searchResult } from '../../model/searchResult';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface Props {
     data: searchResult;
@@ -10,7 +11,12 @@ const Card = (props: Props) => {
     return (
         <Container>
             <MusicInfo>
-                <Album src={props.data.result.song_art_image_thumbnail_url} />
+                <Album
+                    alt={'album art'}
+                    height={'150px'}
+                    width={'150px'}
+                    src={props.data.result.song_art_image_thumbnail_url}
+                />
                 <Info>
                     <Title>{props.data.result.title}</Title>
                     <Artist>{props.data.result.primary_artist.name}</Artist>
@@ -49,15 +55,9 @@ const MusicInfo = styled.div`
     width: 100%;
 `;
 
-const Album = styled.img`
-    font-size: 1.2em;
+const Album = styled(LazyLoadImage)`
     margin-right: 35px;
-    width: 150px;
-    height: 150px;
     object-fit: cover;
-    border-right: 1px solid #eaeae1;
-
-    color: #34495e;
 `;
 
 const Info = styled.div`
