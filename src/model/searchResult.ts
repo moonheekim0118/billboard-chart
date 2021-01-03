@@ -3,7 +3,7 @@ interface primaryArtist {
     name: string;
 }
 
-interface result {
+export interface result {
     api_path: string;
     id: number;
     title: string;

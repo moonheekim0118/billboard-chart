@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { searchResult } from '../../model/searchResult';
+import { Link } from 'react-router-dom';
+import { result } from '../../model/searchResult';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface Props {
-    data: searchResult;
+    data: result;
+    search?: boolean;
 }
 
 const Card = (props: Props) => {
@@ -15,11 +17,15 @@ const Card = (props: Props) => {
                     alt={'album art'}
                     height={'150px'}
                     width={'150px'}
-                    src={props.data.result.song_art_image_thumbnail_url}
+                    src={props.data.song_art_image_thumbnail_url}
                 />
                 <Info>
-                    <Title>{props.data.result.title}</Title>
-                    <Artist>{props.data.result.primary_artist.name}</Artist>
+                    <Title>{props.data.title}</Title>
+                    {props.search && (
+                        <Artist to={`/artist/${props.data.primary_artist.id}`}>
+                            {props.data.primary_artist.name}
+                        </Artist>
+                    )}
                 </Info>
             </MusicInfo>
         </Container>
@@ -71,8 +77,10 @@ const Title = styled.span`
     font-size: 1.3em;
 `;
 
-const Artist = styled.span`
+const Artist = styled(Link)`
     font-size: 1.1em;
+    color: black;
+    text-decoration: none;
 
     transition: color 0.3s ease;
     &:hover {

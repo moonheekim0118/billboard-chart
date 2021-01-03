@@ -30,7 +30,11 @@ const Home = () => {
                 <Search keyword={searchKeyword} fetchAPI={fetchAPI} />
                 {searchData.length > 0 &&
                     searchData.map((data) => (
-                        <Card key={data.result.id} data={data} />
+                        <Card
+                            key={data.result.id}
+                            data={data.result}
+                            search={true}
+                        />
                     ))}
             </Container>
         </Layout>

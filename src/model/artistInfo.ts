@@ -1,9 +1,6 @@
-export interface artistSongInfo {
-    title: string;
-    header_image_thumbnail_url: string;
-}
+import { result } from './searchResult';
 
 export interface artistSongFullInfo {
     next_page: number;
-    songs: artistSongInfo[];
+    songs: result[];
 }
