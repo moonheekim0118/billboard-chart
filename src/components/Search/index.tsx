@@ -7,9 +7,10 @@ import styled from 'styled-components';
 
 interface Props {
     fetchAPI: (value: string) => void;
+    keyword: string;
 }
 const Search = (props: Props) => {
-    const [value, onInput, validation] = useInput();
+    const [value, onInput, validation] = useInput(props.keyword);
 
     const onSubmit = useCallback(
         async (e) => {
