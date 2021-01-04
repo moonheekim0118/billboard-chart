@@ -5,7 +5,6 @@ import { api } from '../api';
 import { result } from '../model/searchResult';
 import { pathParser } from '../util/pathParser';
 import styled from 'styled-components';
-import { doc } from 'prettier';
 
 const Artist = (props) => {
     // path parsing
@@ -19,14 +18,14 @@ const Artist = (props) => {
     }, []);
 
     useEffect(() => {
+        // 스크롤 핸들러
         function onScroll() {
             if (
                 window.pageYOffset +
                     document.documentElement.clientHeight +
-                    100 >=
+                    30 >=
                 document.documentElement.scrollHeight
             ) {
-                console.log(nextPage, loading);
                 if (nextPage && !loading) {
                     fetchAPI();
                 }
@@ -38,6 +37,7 @@ const Artist = (props) => {
         };
     }, [result, nextPage, loading]);
 
+    // API fetch 보내고, 받아온 값 저장하는 함수
     const fetchAPI = useCallback(async () => {
         setLoading(true);
         const response = await api.getArtistInfo(artist, nextPage.toString());
@@ -45,7 +45,7 @@ const Artist = (props) => {
         const mergedArray = result.concat(response.data.songs);
         setResult(mergedArray);
         setLoading(false);
-    }, [nextPage]);
+    }, [nextPage, result]);
 
     return (
         <Layout title={'artist'}>
