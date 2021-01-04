@@ -12,5 +12,5 @@ export const getItem = (key: string) => {
     if (key === 'searchResult') {
         return value === null ? [] : JSON.parse(value);
     }
-    return value === null ? null : JSON.parse(value);
+    return value === null ? '' : JSON.parse(value);
 };
