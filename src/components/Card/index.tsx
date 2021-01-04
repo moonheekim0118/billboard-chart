@@ -42,14 +42,9 @@ const Container = styled.div`
 
     margin-top: 25px;
     box-shadow: 0px 0px 2px 0px rgba(255, 255, 255, 1);
-    border-radius: 10px;
 
     cursor: pointer;
     transition: box-shadow 0.5s ease;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 
     &:hover {
         box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 1);
@@ -75,6 +70,10 @@ const Info = styled.div`
 
 const Title = styled.span`
     font-size: 1.3em;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
 const Artist = styled(Link)`
@@ -83,6 +82,12 @@ const Artist = styled(Link)`
     text-decoration: none;
 
     transition: color 0.3s ease;
+
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     &:hover {
         color: #eb4034;
     }
