@@ -5,8 +5,10 @@ export const setItem = (key: string, value: string) => {
     if (value === null || value === undefined) return;
     const RefinedValue = { id: Date.now(), value: value };
     const exItems = getItem(key);
-    exItems.push(RefinedValue);
-    const toJson = JSON.stringify(exItems);
+    // 중복된 값 거르기
+    const result = exItems.filter((element) => element.value !== value);
+    result.unshift(RefinedValue);
+    const toJson = JSON.stringify(result);
     localStorage.setItem(key, toJson);
 };
 
