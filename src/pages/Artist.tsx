@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import Layout from '../components/Layout';
 import Card from '../components/Card';
+import Pagination from '../components/Pagination';
 import { api } from '../api';
 import { result } from '../model/searchResult';
 import { pathParser } from '../util/pathParser';
@@ -10,48 +11,30 @@ const Artist = (props) => {
     // path parsing
     const artist = pathParser(props.location.pathname, '/artist/');
     const [result, setResult] = useState<result[]>([]);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [nextPage, setNextPage] = useState<number>(1);
+    const [page, setPage] = useState<number>(1);
 
+    // page가 변경될 때 fetch를 다시 한다.
     useEffect(() => {
         fetchAPI();
-    }, []);
-
-    useEffect(() => {
-        // 스크롤 핸들러
-        function onScroll() {
-            if (
-                window.pageYOffset +
-                    document.documentElement.clientHeight +
-                    30 >=
-                document.documentElement.scrollHeight
-            ) {
-                if (nextPage && !loading) {
-                    fetchAPI();
-                }
-            }
-        }
-        window.addEventListener('scroll', onScroll);
-        return () => {
-            window.removeEventListener('scroll', onScroll);
-        };
-    }, [result, nextPage, loading]);
+    }, [page]);
 
     // API fetch 보내고, 받아온 값 저장하는 함수
     const fetchAPI = useCallback(async () => {
-        setLoading(true);
-        const response = await api.getArtistInfo(artist, nextPage.toString());
-        setNextPage(response.data.next_page);
-        const mergedArray = result.concat(response.data.songs);
-        setResult(mergedArray);
-        setLoading(false);
-    }, [nextPage, result]);
+        const response = await api.getArtistInfo(artist, page.toString());
+        setResult(response.data.songs);
+    }, [page, result]);
+
+    // target 으로 page Number를 받아와서 page number를 변경한다.
+    const paginate = useCallback((target: number) => {
+        setPage(target);
+    }, []);
 
     return (
         <Layout title={'artist'}>
             <Container>
                 {result.length > 0 &&
                     result.map((data) => <Card key={data.id} data={data} />)}
+                <Pagination nowPage={page} paginate={paginate} />
             </Container>
         </Layout>
     );
