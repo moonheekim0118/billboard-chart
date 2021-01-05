@@ -6,7 +6,8 @@ import { searchHistory } from '../../model/searchHistory';
 
 interface Props {
     data: searchHistory[];
-    onRemove: (id: number) => void;
+    onClick: (value: string) => void;
+    onRemove: (e: Event, id: number) => void;
 }
 
 const SearchHistory = (props: Props) => {
@@ -14,11 +15,13 @@ const SearchHistory = (props: Props) => {
         <Container>
             {props.data.length > 0 &&
                 props.data.map((element) => (
-                    <History key={element.id}>
+                    <History
+                        key={element.id}
+                        onClick={props.onClick.bind(this, element.value)}>
                         <Keyword>{element.value}</Keyword>
                         <Remove
                             icon={faTrash}
-                            onClick={props.onRemove.bind(this, element.id)}
+                            onClick={(e) => props.onRemove(e, element.id)}
                         />
                     </History>
                 ))}

@@ -13,24 +13,37 @@ interface Props {
     keyword: string;
 }
 const Search = (props: Props) => {
-    const [value, onInput, validation] = useInput(props.keyword);
+    const [value, onInput, validation, setValue] = useInput(props.keyword);
     const [history, setHistory] = useState<searchHistory[]>(
         getItem('searchHistory')
     );
+
+    const changeContents = useCallback(async () => {
+        setItem('searchHistory', value); // localStorage에 기록 저장
+        await props.fetchAPI(value); // 검색
+    }, [value]);
 
     // 검색 submit
     const onSubmit = useCallback(
         async (e) => {
             e.preventDefault();
-            setItem('searchHistory', value); // localStorage에 기록 저장
-            await props.fetchAPI(value); // 검색
+            await changeContents();
+        },
+        [value]
+    );
+
+    const onClickHistory = useCallback(
+        async (value: string) => {
+            setValue(value);
+            await changeContents();
         },
         [value]
     );
 
     // 검색 기록 삭제
     const onRemoveHistory = useCallback(
-        (id: number) => {
+        (e: Event, id: number) => {
+            e.stopPropagation();
             removeItem('searchHistory', id); // localStorage에서 삭제
             setHistory(getItem('searchHistory')); // 삭제된 결과값 반영
         },
@@ -41,7 +54,11 @@ const Search = (props: Props) => {
         <Form>
             <Input value={value} onChange={onInput} />
             <HistoryContainer>
-                <SearchHistory data={history} onRemove={onRemoveHistory} />
+                <SearchHistory
+                    data={history}
+                    onClick={onClickHistory}
+                    onRemove={onRemoveHistory}
+                />
             </HistoryContainer>
             <ButtonContainer>
                 <Button

@@ -22,7 +22,7 @@ const useInput = (initialValue: string = '') => {
         setValidation(e.target.value.length === 0);
     }, []);
 
-    return [value, handler, validation] as const;
+    return [value, handler, validation, setter] as const;
 };
 
 export default useInput;
