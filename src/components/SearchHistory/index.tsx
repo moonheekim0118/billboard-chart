@@ -5,20 +5,23 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { searchHistory } from '../../model/searchHistory';
 
 interface Props {
-    data?: searchHistory[];
+    data: searchHistory[];
+    onRemove: (id: number) => void;
 }
 
 const SearchHistory = (props: Props) => {
     return (
         <Container>
-            <History>
-                <Keyword>안녕하세용</Keyword>
-                <Remove icon={faTrash} />
-            </History>
-            <History>
-                <Keyword>안녕하세용</Keyword>
-                <Remove icon={faTrash} />
-            </History>
+            {props.data.length > 0 &&
+                props.data.map((element) => (
+                    <History key={element.id}>
+                        <Keyword>{element.value}</Keyword>
+                        <Remove
+                            icon={faTrash}
+                            onClick={props.onRemove.bind(this, element.id)}
+                        />
+                    </History>
+                ))}
         </Container>
     );
 };

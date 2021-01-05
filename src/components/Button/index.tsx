@@ -22,10 +22,12 @@ const Button = (props: Props) => {
 const Container = styled.button`
     background-color: #ecc422;
     color: #fff;
+    font-size: 1.1em;
     font-weight: bold;
     border: none;
-    border-radius: 10px;
-    padding: 0px 15px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px 15px;
 
     cursor: pointer;
     transition: background-color 0.5s ease;
