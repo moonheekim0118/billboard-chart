@@ -1,7 +1,9 @@
+import { searchResult } from '../model/searchResult';
+
 // SessionStorage에 들어가는 것
 // 1.keyword
 // 2.searchResult
-export const setItem = (key: string, value) => {
+export const setItem = (key: string, value: string | searchResult) => {
     if (value === null || value === undefined) return;
     const toJson = JSON.stringify(value);
     sessionStorage.setItem(key, toJson);
