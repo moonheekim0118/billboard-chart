@@ -57,20 +57,21 @@ const MusicInfo = styled.div`
 `;
 
 const Album = styled(LazyLoadImage)`
-    margin-right: 35px;
+    margin-right: 20px;
+    width: 30%;
     object-fit: cover;
 `;
 
 const Info = styled.div`
     display: flex;
-    width: 60%;
+    width: 70%;
+    padding: 0 15px;
     flex-direction: column;
     justify-content: center;
 `;
 
 const Title = styled.span`
     font-size: 1.3em;
-    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -83,7 +84,6 @@ const Artist = styled(Link)`
 
     transition: color 0.3s ease;
 
-    width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

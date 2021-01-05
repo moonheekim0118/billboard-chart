@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { setItem } from '../../util/localStorage';
 import Button from '../Button';
 import SearchHistory from '../SearchHistory';
-import useToggle from '../../hooks/useToggle';
 import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
 
@@ -14,7 +13,6 @@ interface Props {
 }
 const Search = (props: Props) => {
     const [value, onInput, validation] = useInput(props.keyword);
-    const [showHistory, setShowHistory] = useToggle();
 
     const onSubmit = useCallback(
         async (e) => {
