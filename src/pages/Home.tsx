@@ -25,11 +25,7 @@ const Home = () => {
                 {!loading &&
                     data.length > 0 &&
                     data.map((element) => (
-                        <Card
-                            key={element.result.id}
-                            data={element.result}
-                            search={true}
-                        />
+                        <Card key={element.id} data={element} search={true} />
                     ))}
             </Container>
         </Layout>
