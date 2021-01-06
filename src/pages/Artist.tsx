@@ -3,8 +3,8 @@ import Layout from '../components/Layout';
 import Card from '../components/Card';
 import Pagination from '../components/Pagination';
 import Loading from '../components/Loading';
+import Error from '../components/Error';
 import useRequest from '../hooks/useRequest';
-
 import { pathParser } from '../util/pathParser';
 import styled from 'styled-components';
 
@@ -28,6 +28,7 @@ const Artist = (props) => {
         <Layout title={'artist'}>
             <Container>
                 {loading && <Loading />}
+                {error && <Error />}
                 {!loading &&
                     data.length > 0 &&
                     data.map((element) => (

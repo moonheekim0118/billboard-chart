@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import Search from '../components/Search';
 import Card from '../components/Card';
 import Loading from '../components/Loading';
+import Error from '../components/Error';
 import useRequest from '../hooks/useRequest';
 import { getItem } from '../util/sessionStorage';
 import styled from 'styled-components';
@@ -20,6 +21,7 @@ const Home = () => {
             <Container>
                 <Search keyword={searchKeyword} fetchAPI={fetch} />
                 {loading && <Loading />}
+                {error && <Error />}
                 {!loading &&
                     data.length > 0 &&
                     data.map((element) => (

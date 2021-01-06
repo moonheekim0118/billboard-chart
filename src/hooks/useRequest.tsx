@@ -1,10 +1,9 @@
 import { useState, useCallback, useEffect } from 'react';
 import { api } from '../api';
 import { setItem, getItem } from '../util/sessionStorage';
-import { result, searchResult } from '../model/searchResult';
 
 const useRequest = (type: string, artist?: string) => {
-    const [data, setData] = useState<result[] & searchResult[]>([]);
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<boolean>(false);
 
