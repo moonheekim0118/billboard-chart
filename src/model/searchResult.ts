@@ -3,7 +3,7 @@ interface primaryArtist {
     name: string;
 }
 
-export interface result {
+export interface searchResult {
     api_path: string;
     id: number;
     title: string;
@@ -11,6 +11,6 @@ export interface result {
     primary_artist: primaryArtist;
 }
 
-export interface searchResult {
-    result: result;
+export interface initResult {
+    result: searchResult;
 }
