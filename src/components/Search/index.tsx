@@ -6,7 +6,7 @@ import SearchHistory from '../SearchHistory';
 import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
 
-// TODO : sessionStorage에서 keyword 가져와서 input initlaValue로 넣기
+const SEARCH_HISTORY = 'searchHistory';
 
 interface Props {
     fetchAPI: (value: string) => void;
@@ -15,11 +15,12 @@ interface Props {
 const Search = (props: Props) => {
     const [value, onInput, validation, setValue] = useInput(props.keyword);
     const [history, setHistory] = useState<searchHistory[]>(
-        getItem('searchHistory')
+        getItem(SEARCH_HISTORY)
     );
 
     const changeContents = useCallback(async () => {
-        setItem('searchHistory', value); // localStorage에 기록 저장
+        setItem(SEARCH_HISTORY, value); // localStorage에 기록 저장
+        setHistory(getItem(SEARCH_HISTORY)); // searchHistory 바로 갱신
         await props.fetchAPI(value); // 검색
     }, [value]);
 
@@ -44,8 +45,8 @@ const Search = (props: Props) => {
     const onRemoveHistory = useCallback(
         (e: Event, id: number) => {
             e.stopPropagation();
-            removeItem('searchHistory', id); // localStorage에서 삭제
-            setHistory(getItem('searchHistory')); // 삭제된 결과값 반영
+            removeItem(SEARCH_HISTORY, id); // localStorage에서 삭제
+            setHistory(getItem(SEARCH_HISTORY)); // 삭제된 결과값 반영
         },
         [history]
     );

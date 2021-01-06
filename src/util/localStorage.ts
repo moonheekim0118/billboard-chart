@@ -2,7 +2,7 @@ import { searchHistory } from '../model/searchHistory';
 
 // 검색기록 추가
 export const setItem = (key: string, value: string) => {
-    if (value === null || value === undefined) return;
+    if (value === null || value === undefined || value.length === 0) return;
     const RefinedValue = { id: Date.now(), value: value };
     const exItems = getItem(key);
     // 중복된 값 거르기
