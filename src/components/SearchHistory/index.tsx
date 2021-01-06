@@ -16,10 +16,12 @@ const SearchHistory = (props: Props) => {
             {props.data.length > 0 &&
                 props.data.map((element) => (
                     <History
+                        id={'search-history'}
                         key={element.id}
                         onClick={props.onClick.bind(this, element.value)}>
                         <Keyword>{element.value}</Keyword>
                         <Remove
+                            id={'remove-btn'}
                             icon={faTrash}
                             onClick={(e) => props.onRemove(e, element.id)}
                         />

@@ -21,6 +21,7 @@ const Pagination = (props: Props) => {
             const pageNumber = props.nowPage + i;
             temp.push(
                 <Page
+                    id="page"
                     key={pageNumber}
                     onClick={props.paginate.bind(this, pageNumber)}
                     nowPage={props.nowPage === pageNumber}>
@@ -34,20 +35,25 @@ const Pagination = (props: Props) => {
     return (
         <Container>
             {props.nowPage >= 5 && (
-                <Page onClick={props.paginate.bind(this, props.nowPage - 4)}>
+                <Page
+                    id="page"
+                    onClick={props.paginate.bind(this, props.nowPage - 4)}>
                     <FontAwesomeIcon icon={faChevronLeft} />
                 </Page>
             )}
             {props.nowPage >= 2 && (
                 <>
                     {' '}
-                    <Page onClick={props.paginate.bind(this, 1)}>
+                    <Page id="page" onClick={props.paginate.bind(this, 1)}>
                         1
-                    </Page> ...{' '}
+                    </Page>{' '}
+                    ...{' '}
                 </>
             )}
             {pages}
-            <Page onClick={props.paginate.bind(this, props.nowPage + 4)}>
+            <Page
+                id="page"
+                onClick={props.paginate.bind(this, props.nowPage + 4)}>
                 <FontAwesomeIcon icon={faChevronRight} />
             </Page>
         </Container>

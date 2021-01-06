@@ -6,5 +6,8 @@ module.exports = {
     testEnvironment: 'node',
     testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(test).ts?(x)'],
     transformIgnorePatterns: ['/node_modules/'],
-    setupFilesAfterEnv: ['<rootDir>/src/__test__/setUpTest.ts'],
+    setupFilesAfterEnv: [
+        '<rootDir>/src/__test__/setUpTest.ts',
+        'jest-localstorage-mock',
+    ],
 };
