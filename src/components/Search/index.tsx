@@ -20,8 +20,8 @@ const Search = (props: Props) => {
 
     const changeContents = useCallback(async () => {
         setItem(SEARCH_HISTORY, value); // localStorage에 기록 저장
-        setHistory(getItem(SEARCH_HISTORY)); // searchHistory 바로 갱신
         await props.fetchAPI(value); // 검색
+        setHistory(getItem(SEARCH_HISTORY)); // searchHistory 바로 갱신
     }, [value]);
 
     // 검색 submit

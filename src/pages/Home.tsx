@@ -1,38 +1,31 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import Search from '../components/Search';
 import Card from '../components/Card';
-import { api } from '../api';
-import { searchResult } from '../model/searchResult';
-import { setItem, getItem } from '../util/sessionStorage';
+import Loading from '../components/Loading';
+import useRequest from '../hooks/useRequest';
+import { getItem } from '../util/sessionStorage';
 import styled from 'styled-components';
 
 const Home = () => {
-    // search Result 저장
-    const [searchData, setData] = useState<searchResult[]>([]);
     const [searchKeyword, setKeyword] = useState<string>('');
+    const [data, loading, error, fetch] = useRequest('search');
 
     useEffect(() => {
         setKeyword(getItem('keyword'));
-        setData(getItem('searchResult'));
-    }, []);
-
-    // api request 함수
-    const fetchAPI = useCallback(async (value: string) => {
-        const result = await api.search(value);
-        setData(result.data);
-        setItem('searchResult', result.data);
     }, []);
 
     return (
         <Layout title={'search'}>
             <Container>
-                <Search keyword={searchKeyword} fetchAPI={fetchAPI} />
-                {searchData.length > 0 &&
-                    searchData.map((data) => (
+                <Search keyword={searchKeyword} fetchAPI={fetch} />
+                {loading && <Loading />}
+                {!loading &&
+                    data.length > 0 &&
+                    data.map((element) => (
                         <Card
-                            key={data.result.id}
-                            data={data.result}
+                            key={element.result.id}
+                            data={element.result}
                             search={true}
                         />
                     ))}
