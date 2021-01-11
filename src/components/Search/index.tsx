@@ -34,7 +34,7 @@ const Search = (props: Props) => {
     );
 
     const onClickHistory = useCallback(
-        async (value: string) => {
+        (value: string) => async () => {
             setValue(value);
             await changeContents();
         },

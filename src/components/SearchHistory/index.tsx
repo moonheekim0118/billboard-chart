@@ -6,7 +6,7 @@ import { searchHistory } from '../../model/searchHistory';
 
 interface Props {
     data: searchHistory[];
-    onClick: (value: string) => void;
+    onClick: (value: string) => () => void;
     onRemove: (e: Event, id: number) => void;
 }
 
@@ -18,7 +18,7 @@ const SearchHistory = (props: Props) => {
                     <History
                         id={'search-history'}
                         key={element.id}
-                        onClick={props.onClick.bind(this, element.value)}>
+                        onClick={props.onClick(element.value)}>
                         <Keyword>{element.value}</Keyword>
                         <Remove
                             id={'remove-btn'}

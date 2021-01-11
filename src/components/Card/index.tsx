@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { result } from '../../model/searchResult';
+import { searchResult } from '../../model/searchResult';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 interface Props {
-    data: result;
+    data: searchResult;
     search?: boolean;
 }
 

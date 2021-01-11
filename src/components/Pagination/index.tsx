@@ -8,7 +8,7 @@ import {
 
 interface Props {
     nowPage: number;
-    paginate: (target: number) => void;
+    paginate: (target: number) => () => void;
 }
 
 const Pagination = (props: Props) => {
@@ -23,7 +23,7 @@ const Pagination = (props: Props) => {
                 <Page
                     id="page"
                     key={pageNumber}
-                    onClick={props.paginate.bind(this, pageNumber)}
+                    onClick={props.paginate(pageNumber)}
                     nowPage={props.nowPage === pageNumber}>
                     {pageNumber}
                 </Page>
@@ -35,25 +35,21 @@ const Pagination = (props: Props) => {
     return (
         <Container>
             {props.nowPage >= 5 && (
-                <Page
-                    id="page"
-                    onClick={props.paginate.bind(this, props.nowPage - 4)}>
+                <Page id="page" onClick={props.paginate(props.nowPage - 4)}>
                     <FontAwesomeIcon icon={faChevronLeft} />
                 </Page>
             )}
             {props.nowPage >= 2 && (
                 <>
                     {' '}
-                    <Page id="page" onClick={props.paginate.bind(this, 1)}>
+                    <Page id="page" onClick={props.paginate(1)}>
                         1
                     </Page>{' '}
                     ...{' '}
                 </>
             )}
             {pages}
-            <Page
-                id="page"
-                onClick={props.paginate.bind(this, props.nowPage + 4)}>
+            <Page id="page" onClick={props.paginate(props.nowPage + 4)}>
                 <FontAwesomeIcon icon={faChevronRight} />
             </Page>
         </Container>

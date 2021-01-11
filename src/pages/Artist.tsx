@@ -20,9 +20,12 @@ const Artist = (props) => {
     }, [page]);
 
     // target 으로 page Number를 받아와서 page number를 변경한다.
-    const paginate = useCallback((target: number) => {
-        setPage(target);
-    }, []);
+    const paginate = useCallback(
+        (target: number) => () => {
+            setPage(target);
+        },
+        []
+    );
 
     return (
         <Layout title={'artist'}>
